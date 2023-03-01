@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.boggle.databinding.FragmentLettersBinding
@@ -41,20 +42,32 @@ class LettersFragment : Fragment() {
         binding.lettersRecyclerView.layoutManager = GridLayoutManager(context,3)
 
         val letters = viewModel.letters
-        val adapter = LetterGridAdapter(letters)
+        val adapter = LetterGridAdapter(letters, viewModel)
         binding.lettersRecyclerView.adapter = adapter
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        word = ""
         binding.apply {
 
             submit.setOnClickListener {_ ->
                 Log.d(TAG, "Clicked the submit button and updated word")
-                viewModel.updateWord(word)
+                viewModel.submitWord()
             }
+
+            viewModel.word.observe(viewLifecycleOwner, Observer { new_word ->
+                Log.d(TAG,"updating word to: " + new_word)
+                binding.word.text = new_word
+            })
+
+            clear.setOnClickListener { _ ->
+                Log.d(TAG, "Clicked the clear button")
+                viewModel.clearWord()
+            }
+
+            binding.word.text = ""
+
         }
     }
 

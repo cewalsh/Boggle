@@ -40,12 +40,14 @@ class ScoreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+            viewModel.finalWord.observe( viewLifecycleOwner, Observer { word ->
+                Log.d(TAG,"scoring this word: " + word)
 
+            })
         }
 
-        viewModel.word.observe(this, Observer { word ->
-            Log.d(TAG,"scoring this word: " + word)
-        })
+
+
     }
 
     override fun onDestroyView() {
