@@ -48,7 +48,7 @@ class LettersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentLettersBinding.inflate(layoutInflater, container, false);
-        binding.lettersRecyclerView.layoutManager = GridLayoutManager(context,3)
+        binding.lettersRecyclerView.layoutManager = GridLayoutManager(context,4)
 
         val letters = viewModel.letters
         val adapter = LetterGridAdapter(letters, viewModel)

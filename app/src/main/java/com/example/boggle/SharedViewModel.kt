@@ -48,9 +48,9 @@ class SharedViewModel : ViewModel() {
 
     fun updateLetter(letter: Char, position: Int): Int {
         val lastPosition = lastLetter.value
-        if(lastPosition == null || lastPosition == -1 || position == lastPosition + 3 || position == lastPosition - 3
-            || ((position == lastPosition + 1 || position == lastPosition + 4 || position == lastPosition - 2) && lastPosition % 3 != 2)
-            || ((position == lastPosition - 1 || position == lastPosition - 4 || position == lastPosition + 2) && lastPosition % 3 != 0)){
+        if(lastPosition == null || lastPosition == -1 || position == lastPosition + 4 || position == lastPosition - 4
+            || ((position == lastPosition + 1 || position == lastPosition + 5 || position == lastPosition - 3) && lastPosition % 4 != 3)
+            || ((position == lastPosition - 1 || position == lastPosition - 5 || position == lastPosition + 3) && lastPosition % 4 != 0)){
             mutableLastLetter.value = position
             mutableWord.value = word.value + letter
             usedLetterPositions.value?.add(position)
@@ -87,7 +87,7 @@ class SharedViewModel : ViewModel() {
 
     fun newLetters(){
         letters.clear()
-        for (i in 0 until 12){
+        for (i in 0 until 16){
             val c : Char = randomChar()
             letters += c
         }
