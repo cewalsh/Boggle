@@ -16,7 +16,6 @@ class LetterGridHolder(val binding: GridItemLetterBinding) : RecyclerView.ViewHo
 }
 
 class LetterGridAdapter(private val letters: List<Char>, private val sharedViewModel: SharedViewModel): RecyclerView.Adapter<LetterGridHolder>(){
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LetterGridHolder {
         Log.d(TAG,"This is called")
         val inflater = LayoutInflater.from(parent.context)
@@ -46,9 +45,7 @@ class LetterGridAdapter(private val letters: List<Char>, private val sharedViewM
                     binding.letter.isClickable = false
                 }
             }
-
         }
-
     }
 
 }

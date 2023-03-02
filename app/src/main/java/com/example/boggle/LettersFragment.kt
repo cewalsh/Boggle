@@ -13,6 +13,15 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.boggle.databinding.FragmentLettersBinding
+import java.io.BufferedReader
+
+import java.io.File
+import android.content.Context
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.util.*
+import kotlin.collections.HashSet
+
 
 private const val TAG = "LettersFragment"
 
@@ -27,8 +36,8 @@ class LettersFragment : Fragment() {
             "Cannot access binding because it is null. Is the view visibile?"
         }
     private lateinit var word : String
-//    private lateinit var char
 
+//    private lateinit var char
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -49,10 +58,19 @@ class LettersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mainActivity = MainActivity()
         binding.apply {
-
             submit.setOnClickListener {_ ->
                 Log.d(TAG, "Clicked the submit button and updated word")
+                if (mainActivity.checkWord((binding.word.text as String).lowercase())) {
+                    println(((binding.word.text as String).lowercase())+" is a Real word!")
+                    //You can add score here
+
+                }else {
+                    println(((binding.word.text as String).lowercase())+" is NOT a Real word!")
+                    //You can minus score here
+
+                }
                 viewModel.submitWord()
             }
 
