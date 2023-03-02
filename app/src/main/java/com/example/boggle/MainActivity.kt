@@ -33,10 +33,12 @@ class MainActivity : AppCompatActivity() {
         // Add each word to the dictionary HashSet
         var line: String? = reader.readLine()
         while (line != null) {
-            dictionary.add(line.trim().toLowerCase(Locale.ROOT))
+            dictionary.add(line.trim().uppercase(Locale.ROOT))
             line = reader.readLine()
         }
         // Close the file reader
         reader.close()
+
+        viewModel.dictionary = dictionary
     }
 }

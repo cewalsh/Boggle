@@ -1,8 +1,13 @@
 import android.accessibilityservice.AccessibilityButtonController.AccessibilityButtonCallback
+import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.PorterDuff
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
@@ -43,6 +48,8 @@ class LetterGridAdapter(private val letters: List<Char>, private val sharedViewM
                     ).show()
                 }else{
                     binding.letter.isClickable = false
+                    binding.letter.alpha = 0.5f
+//                    binding.letter.background.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(Color.GRAY, BlendModeCompat.MULTIPLY)
                 }
             }
         }

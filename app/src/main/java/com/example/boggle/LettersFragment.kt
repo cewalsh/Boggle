@@ -72,6 +72,8 @@ class LettersFragment : Fragment() {
 
                 }
                 viewModel.submitWord()
+                val adapter = LetterGridAdapter(viewModel.letters, viewModel)
+                binding.lettersRecyclerView.adapter = adapter
             }
 
             viewModel.word.observe(viewLifecycleOwner, Observer { new_word ->
@@ -82,7 +84,15 @@ class LettersFragment : Fragment() {
             clear.setOnClickListener { _ ->
                 Log.d(TAG, "Clicked the clear button")
                 viewModel.clearWord()
+                val adapter = LetterGridAdapter(viewModel.letters, viewModel)
+                binding.lettersRecyclerView.adapter = adapter
             }
+
+            viewModel.reset.observe(viewLifecycleOwner, Observer { _ ->
+                Log.d(TAG, "resetting letters")
+                val adapter = LetterGridAdapter(viewModel.letters, viewModel)
+                binding.lettersRecyclerView.adapter = adapter
+            })
 
             binding.word.text = ""
 
